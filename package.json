@@ -18,5 +18,8 @@
   "homepage": "https://github.com/AnoniumChat/Anonium#readme",
   "devDependencies": {
     "eslint": "^8.20.0"
+  },
+  "dependencies": {
+    "ws": "^8.8.1"
   }
 }
