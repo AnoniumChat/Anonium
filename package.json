@@ -1,0 +1,22 @@
+{
+  "name": "anonium",
+  "version": "0.0.1",
+  "description": "A free, open-source, realtime chat platform made with privacy in mind.",
+  "main": "src/client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnoniumChat/Anonium.git"
+  },
+  "author": "Anonium",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/AnoniumChat/Anonium/issues"
+  },
+  "homepage": "https://github.com/AnoniumChat/Anonium#readme",
+  "devDependencies": {
+    "eslint": "^8.20.0"
+  }
+}
