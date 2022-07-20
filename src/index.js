@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
 
+<<<<<<< HEAD
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
 // eslint-disable-line global-require
@@ -11,12 +12,20 @@ const createWindow = () => {
 	// Create the browser window.
 	const mainWindow = new BrowserWindow({
 		width: 800,
+=======
+if (require("electron-squirrel-startup")) app.quit();
+
+const createWindow = () => {
+	const mainWindow = new BrowserWindow({
+		width: 1000,
+>>>>>>> 9926fa2e7791ed44c06028a95a2f932cf3d432bf
 		height: 600,
 		webPreferences: {
 			nodeIntegration: true,
 		},
 	});
 
+<<<<<<< HEAD
 	// and load the index.html of the app.
 	// eslint-disable-next-line no-undef
 	mainWindow.loadFile(path.join(__dirname, "index.html"));
@@ -54,3 +63,14 @@ app.on("activate", () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+=======
+	mainWindow.loadFile(path.join("index.html"));
+	mainWindow.setMenuBarVisibility(false);
+};
+
+app.on("ready", createWindow);
+
+// eslint-disable-next-line no-undef
+app.on("window-all-closed", () => process.platform !== "darwin" && app.quit());
+app.on("activate", () => BrowserWindow.getAllWindows().length === 0 && createWindow());
+>>>>>>> 9926fa2e7791ed44c06028a95a2f932cf3d432bf
