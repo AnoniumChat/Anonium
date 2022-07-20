@@ -10,12 +10,20 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnoniumChat/Anonium.git"
+  },
   "keywords": [],
   "author": {
     "name": "The Anonium Team",
     "email": "anonium.business@proton.me"
   },
   "license": "GNU AGPLv3",
+  "bugs": {
+    "url": "https://github.com/AnoniumChat/Anonium/issues"
+  },
+  "homepage": "https://github.com/AnoniumChat/Anonium#readme",
   "config": {
     "forge": {
       "packagerConfig": {
@@ -52,7 +60,8 @@
   },
   "dependencies": {
     "electron-menu": "^1.0.0",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "ws": "^8.8.1"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.64",
@@ -60,6 +69,7 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.64",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.64",
     "@electron-forge/maker-zip": "^6.0.0-beta.64",
-    "electron": "^19.0.8"
+    "electron": "^19.0.8",
+    "eslint": "^8.20.0"
   }
 }
