@@ -8,20 +8,19 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "publish": "electron-forge publish"
   },
   "keywords": [],
   "author": {
     "name": "The Anonium Team",
     "email": "anonium.business@proton.me"
   },
-  "license": "MIT",
+  "license": "GNU AGPLv3",
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "src/assets/icon",
-        "executableName": "anonium"
+        "icon": "src/assets/icon.ico",
+        "executableName": "anonium.exe"
       },
       "makers": [
         {
