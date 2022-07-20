@@ -2,64 +2,66 @@ name: Build
 on: [push, pull_request]
 
 jobs:
- build_on_linux:
-  runs-on: ubuntu-latest
-  steps:
-  - uses: actions/checkout@v2
-  - uses: actions/setup-node@master
-   with:
-    node-version: 14
-  - name: install dependencies
-   run: npm install
-  - name: build
-   run: npm run make
+  build_on_win:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@master
+      with:
+        node-version: 14
+    - name: install dependencies
+      run: npm install
+    - name: build
+      run: npm run make
+   - name: Retrieve date and time
+     run: |
+       echo "::set-output name=dt::$(date +"%Y-%m-%d %T")"
+       echo "::set-output name=dtr::$(date '+%Y%m%d%H%M%S')"
+     id: dt
+   - name: Create Release
+     id: create_release
+     uses: actions/create-release@v1
+     env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     with:
+       tag_name: development-${{ steps.next_version.outputs.version }}-${{ steps.dt.outputs.dtr }}
+       release_name: Development ${{ steps.next_version.outputs.version }} - ${{ steps.dt.outputs.dt }}
+       body: |
+         ${{ steps.Changelog.outputs.changelog }}
+       draft: false
+       prerelease: true
+   - name: Upload Release Asset
+     id: upload-release-asset 
+     uses: actions/upload-release-asset@v1
+     env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+     with:
+       upload_url: ${{ steps.create_release.outputs.upload_url }}
+       asset_path: ./out/make/x64/anonium-setup.exe
+       asset_name: anonium-setup.exe
+       asset_type: application/x-ms-dos-executable
+       
+  build_on_linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@master
+      with:
+        node-version: 14
+    - name: install dependencies
+      run: npm install
+    - name: build
+      run: npm run make
 
- build_on_mac:
-  runs-on: macos-latest
-  steps:
-  - uses: actions/checkout@v2
-  - uses: actions/setup-node@master
-   with:
-    node-version: 14
-  - name: install dependencies
-   run: npm install
-  - name: build
-   run: npm run make
+  build_on_mac:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@master
+      with:
+        node-version: 14
+    - name: install dependencies
+      run: npm install
+    - name: build
+      run: npm run make
 
- build_on_win:
-  runs-on: windows-latest
-  steps:
-  - uses: actions/checkout@v2
-  - uses: actions/setup-node@master
-   with:
-    node-version: 14
-  - name: install dependencies
-   run: npm install
-  - name: build
-   run: npm run make
-  - name: Retrieve date and time
-    run: |
-      echo "::set-output name=dt::$(date +"%Y-%m-%d %T")"
-      echo "::set-output name=dtr::$(date '+%Y%m%d%H%M%S')"
-    id: dt
-  - name: Create Release
-    id: create_release
-    uses: actions/create-release@v1
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    with:
-      tag_name: development-${{ steps.next_version.outputs.version }}-${{ steps.dt.outputs.dtr }}
-      release_name: Development ${{ steps.next_version.outputs.version }} - ${{ steps.dt.outputs.dt }}
-      body: |
-        ${{ steps.Changelog.outputs.changelog }}
-      draft: false
-      prerelease: true
-  - name: Upload Release Asset
-    id: upload-release-asset 
-    uses: actions/upload-release-asset@v1
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    with:
-      upload_url: ${{ steps.create_release.outputs.upload_url }}
-      asset_path: ./out/make/x64/anonium-setup.exe
-      asset_name: anonium-setup.exe
