@@ -1,3 +1,6 @@
 .vscode
+.github
+
 node_modules
 src/server.js
+out
