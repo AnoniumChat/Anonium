@@ -1,0 +1,10 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  margin: auto;
+  max-width: 38rem;
+  padding: 2rem;
+}
+
+::-webkit-scrollbar {
+  display: none !important;
+}

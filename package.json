@@ -1,25 +1,66 @@
 {
-  "name": "anonium",
-  "version": "0.0.1",
-  "description": "A free, open-source, realtime chat platform made with privacy in mind.",
-  "main": "src/client.js",
+  "name": "anonium-client",
+  "productName": "Anonium",
+  "version": "1.0.0",
+  "description": "Anonium is a Free, Open Source, Real-Time chat platform made with privacy in mind where you can chat anonymously with all messages being encrypted.",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AnoniumChat/Anonium.git"
+  "keywords": [],
+  "author": {
+    "name": "The Anonium Team",
+    "email": "anonium.business@proton.me"
   },
-  "author": "Anonium",
-  "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/AnoniumChat/Anonium/issues"
-  },
-  "homepage": "https://github.com/AnoniumChat/Anonium#readme",
-  "devDependencies": {
-    "eslint": "^8.20.0"
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "src/assets/icon",
+        "executableName": "anonium"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "Anonium",
+            "icon": "src/assets/icon.ico",
+            "setupIcon": "src/assets/icon.ico",
+            "authors": "The Anonium Team",
+            "setupExe": "anonium-setup.exe"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   },
   "dependencies": {
-    "ws": "^8.8.1"
+    "electron-menu": "^1.0.0",
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.64",
+    "@electron-forge/maker-deb": "^6.0.0-beta.64",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.64",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.64",
+    "@electron-forge/maker-zip": "^6.0.0-beta.64",
+    "electron": "^19.0.8"
   }
 }
